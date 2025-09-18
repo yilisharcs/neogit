@@ -339,9 +339,14 @@ function Finder:find(on_select)
       prompt = string.format("%s> ", self.opts.prompt_prefix),
       fzf_opts = fzf_opts(self.opts),
       winopts = {
-        height = self.opts.layout_config.height,
-        border = self.opts.border,
-        preview = { border = self.opts.border },
+        -- NOTE: hardcode offset
+        -- height = self.opts.layout_config.height,
+        height = self.opts.layout_config.height + 2,
+        -- NOTE: self.opts doesn't pick up fzf setup config?
+        -- border = self.opts.border,
+        -- preview = { border = self.opts.border },
+        border = "rounded",
+        preview = { border = "rounded" },
       },
       actions = fzf_actions(on_select, self.opts.allow_multi, self.opts.refocus_status),
     })
